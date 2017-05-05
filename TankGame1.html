@@ -1,62 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
+<meta charset="utf-8"/>
 </head>
-<body onkeydown="getCommand()">
-<h1>html5经典坦克大战</h1>
-<!--tank 大战的战场-->
-<canvas id = "TankMap" width = "400px" height="300px" style = "background-color:black"></canvas>
-<span id="aa">数据</span>
-<script type = "text/javascript" src = "TankGame1.js"></script>
-<script type = "text/javascript">
-
-    //使用前面的绘图技术
-    var canvas1 = document.getElementById("TankMap");
-    var cxt = canvas1.getContext("2d");
-    //0表示会上 1表示右 2表示下 3表示左
-    var hero = new Hero(40,40,0,heroColor);
-    var heroBullets=new Array();
-    heroBullet = null;
-    //var heroX = 130;
-    //var heroY = 30;
-    //把绘制坦克封装成一个函数
-    //这个函数既可以画友方坦克，也可以玩敌方的
-    //定义地方坦克
-
-
-    var enemyTanks = new Array();
-    for(i = 0;i<3;i++)
-    {
-        var enemyTank;
-        enemyTank = new EnemyTank((i + 1) * 50, 0, 2,enemyTankColor);
-        enemyTanks[i] =enemyTank;
-
-    }
-    //专门写一个函数用于刷新画布作战区，
-        flashTankMap();
-    function flashTankMap() {
-        cxt.clearRect(0,0,400,300);
-        drawTank(hero);
-        drawHeroBullet();
-        for(var i=0;i<3;i++){
-            drawTank(enemyTanks[i]);
-        }
-    }
-
-    function getCommand() {
-        var code = event.keyCode;//对应字母的ASCII码
-        switch (code){
-            case 87:hero.moveUP();break;
-            case 68:hero.moveRight();break;
-            case 83:hero.moveDown();break;
-            case 65:hero.moveLeft();break;
-            case 74:hero.shotEnemy();break;
-        }
-        flashTankMap();
-
-    }
-    window.setInterval("flashTankMap()",100);
+<body onkeydown="getCommand();">
+<h1>hmtl5-经典的坦克大战</h1>
+<!--坦克大战的战场-->
+<canvas id="tankMap" width="400px" height="300px" style="background-color:black"></canvas><br>
+<span>使用说明：W “上” A “左” S “下” D “右” J “发射子弹”  </span>
+<script type="text/javascript" src="tankGame1.js"></script>
+<script type="text/javascript">
+	var canvas1=document.getElementById("tankMap");
+	var cxt=canvas1.getContext("2d");
+	var hero=new Hero(140,140,0,heroColor);
+	var heroBullets=new Array();
+	var enemyTanks=new Array();
+	var enemyBullets=new Array();
+	var bombs=new Array();
+	for(var i=0;i<3;i++){
+		var enemyTank=new EnemyTank((i+1)*50,0,2,enmeyColor);
+		enemyTanks[i]=enemyTank;
+		window.setInterval("enemyTanks["+i+"].run()",50);
+		var eb=new Bullet(enemyTanks[i].x+9,enemyTanks[i].y+30,2,1.2,"enemy",enemyTanks[i]);
+		enemyBullets[i]=eb;
+		var ettimer=window.setInterval("enemyBullets["+i+"].run()",50);
+		enemyBullets[i].timer=ettimer;
+	}
+		flashTankMap();
+	function flashTankMap(){
+		cxt.clearRect(0,0,400,300);
+		drawTank(hero);
+		drawHeroBullet();
+		isHitEnemyTank();
+		drawEnemyBomb();
+		drawEnemyBullet();
+		for(var i=0;i<3;i++){
+			drawTank(enemyTanks[i]);
+		}
+	}
+	function getCommand(){
+		var code=event.keyCode;
+		switch(code){
+			case 87://上
+				hero.moveUp();
+			   break;
+			case 68:
+			  hero.moveRight();
+			   break;
+			 case 83:
+				hero.moveDown();
+				break;
+			case 65:
+				hero.moveLeft();
+				break;
+			case 74:
+				hero.shotEnemy();
+				break;
+		}
+	}
+		flashTankMap();
+	window.setInterval("flashTankMap()",100);
 </script>
 </body>
 </html>
