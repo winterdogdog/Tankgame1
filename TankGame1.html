@@ -39,7 +39,7 @@
 		}
 	}
 	function getCommand(){
-		var code=event.keyCode;
+		var code=event.keyCode || event.which;
 		switch(code){
 			case 87://上
 				hero.moveUp();
