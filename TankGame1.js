@@ -243,7 +243,6 @@ function Tank(x,y,direct,color){
 				//画出自己的坦克，使用前面的绘图技术
 				//设置颜色
 				cxt.fillStyle=tank.color[0];
-				//韩老师使用 先死--->后活 (初学者最好用这个方法)
 				//先画出左面的矩形
 				cxt.fillRect(tank.x,tank.y,5,30);
 				//画出右边的矩形(这时请大家思路->一定要一个参照点)
@@ -275,7 +274,6 @@ function Tank(x,y,direct,color){
 				//画出自己的坦克，使用前面的绘图技术
 				//设置颜色
 				cxt.fillStyle=tank.color[0];
-				//韩老师使用 先死--->后活 (初学者最好用这个方法)
 				//先画出左面的矩形
 				cxt.fillRect(tank.x,tank.y,30,5);
 				//画出右边的矩形(这时请大家思路->一定要一个参照点)
@@ -322,8 +320,6 @@ function isHitEnemyTank(){
 							var enemyTank=enemyTanks[j];
 						
 							if(enemyTank.isLive){
-							//子弹击中敌人坦克的条件是什么? 很多思路 , 韩老师的思想是
-							//根据当时敌人坦克的方向来决定
 							switch(enemyTank.direct){
 								case 0: //敌人坦克向上
 								case 2://敌人坦克向下
