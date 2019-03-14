@@ -12,7 +12,7 @@ function Bomb(x,y){
 		if(this.blood>0){
 			this.blood--;
 		}else{
-			//说明炸弹死亡
+			//说明炸弹死亡33
 			this.isLive=false;
 		}
 	}     
