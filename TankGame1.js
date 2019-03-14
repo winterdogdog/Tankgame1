@@ -15,7 +15,7 @@ function Bomb(x,y){
 			//说明炸弹死亡
 			this.isLive=false;
 		}
-	}
+	}     
 }
 
 
