@@ -22,7 +22,7 @@ function Bomb(x,y){
 //子弹类
 //type表示：这颗子弹是敌人的，还是自己的
 //tank表示对象，说明这颗子弹，属于哪个坦克.
-function Bullet(x,y,direct,speed,type,tank){     
+function Bullet(x,y,direct,speed,type,tank){             
 	this.x=x;
 	this.y=y;
 	this.direct=direct;
